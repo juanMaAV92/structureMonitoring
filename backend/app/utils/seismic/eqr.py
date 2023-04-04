@@ -68,7 +68,7 @@ def graph_signal( tr: obspy.Trace, axis_name: str, path: str )-> None:
     axs.plot(tr.times(), tr.data)
     axs.set_ylabel(f'eje {axis_name.upper()} [mg]')  
     axs.set_xlabel('Tiempo [s]')  
-    plt.savefig( f'{path}axis_{axis_name}.jpg')
+    plt.savefig( f'{path}axis_{axis_name}.jpg', bbox_inches='tight')
     plt.close(fig)
 
 
@@ -77,7 +77,7 @@ def graph_fft( fft_freq: np.ndarray, fft_vals: np.ndarray, amp_spectral:  np.nda
     axs.bar(fft_freq[:len(fft_vals)//2], amp_spectral, width=1)
     axs.set_ylabel(f'eje {axis_name} [mg]')  
     axs.set_xlabel('Frecuencia [Hz]')     
-    plt.savefig( f'{path}fft_{axis_name}.jpg')
+    plt.savefig( f'{path}fft_{axis_name}.jpg', bbox_inches='tight')
     plt.close(fig)
 
 
@@ -97,10 +97,14 @@ if __name__ == '__main__':
         date="2023/04/01"
     )
 
-    path_event = f'{path}/axis_x.jpg'
-    path_fft =  f'{path}/fft_x.jpg'
+    image_signal_path = [f'{path}/axis_x.jpg',
+                  f'{path}/axis_y.jpg',
+                  f'{path}/axis_z.jpg']
+    image_spectrum_path =   [f'{path}/fft_x.jpg',
+                  f'{path}/fft_y.jpg',
+                  f'{path}/fft_z.jpg']
 
-    pdf_report.generate_report(params, path, path_event, path_fft)
+    pdf_report.generate_report(params, path, image_signal_path, image_spectrum_path)
 
     
 
