@@ -10,7 +10,7 @@ python = "^3.10"
 pandas = "^2.0.0"
 matplotlib = "^3.7.1"
 obspy = "^1.4.0"
-reportlab = "^3.6.12"
+fpdf2 = "^2.7.3"
 
 
 [build-system]
